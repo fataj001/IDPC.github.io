@@ -215,8 +215,22 @@ section{padding:100px 0}
 .stat-divider{width:1px;height:50px;background:rgba(255,255,255,.1);flex-shrink:0}
 
 /* ══════ SERVICE NUMBERING ══════ */
-.service-num{font-family:var(--font-heading);font-size:3rem;font-weight:800;color:var(--color-primary);opacity:0.08;line-height:1;margin-bottom:6px;transition:all var(--transition)}
-.service-card:hover .service-num{opacity:0.15}
+.service-num
+.service-num {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    opacity: 0.06;
+    line-height: 1;
+    margin: 0;
+    transition: all var(--transition);
+    z-index: 0;
+    pointer-events: none;
+}
 
 /* ══════ PROJECTS ══════ */
 #projects{background:var(--color-dark);color:var(--color-white)}
