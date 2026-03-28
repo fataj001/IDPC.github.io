@@ -1105,15 +1105,61 @@ section{padding:100px 0}
   modal.addEventListener('click',function(e){if(e.target===modal)closeProjectModal()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeProjectModal()});
 
-  /* ── Contact Form ── */
-  document.getElementById('contactForm').addEventListener('submit',function(e){
+  /* ── Contact Form Integration ── */
+  document.getElementById('contactForm').addEventListener('submit', function(e){
     e.preventDefault();
-    var btn=this.querySelector('button[type="submit"]');
-    btn.innerHTML='<i class="fa-solid fa-check"></i> Message Sent!';
-    btn.style.background='var(--color-secondary)';
-    setTimeout(function(){btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Send Message';btn.style.background=''},3000);
+    
+    var btn = this.querySelector('button[type="submit"]');
+    var originalBtnText = btn.innerHTML;
+    
+    // UI Loading State
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+    btn.style.opacity = '0.7';
+    btn.style.pointerEvents = 'none';
+
+    // Gather Form Data
+    var formData = {
+      fullName: document.getElementById('fullName').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      service: document.getElementById('service').value,
+      message: document.getElementById('message').value
+    };
+
+    // YOUR GOOGLE APPS SCRIPT URL HERE
+    var scriptURL = 'https://script.google.com/macros/s/AKfycbyITg8t8iZ1VieMD0GS-ypC8nV00HkQV2o_UZyaN_2NUQgM_ptE9EXgaQV3a8R2MMcm7Q/exec';
+
+    // Send Data
+    fetch(scriptURL, {
+      method: 'POST',
+      mode: 'no-cors', // Bypasses strict CORS policies on static hosts
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(function() {
+      // UI Success State
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
+      btn.style.background = 'var(--color-secondary)';
+      btn.style.opacity = '1';
+      document.getElementById('contactForm').reset();
+      
+      setTimeout(function(){
+        btn.innerHTML = originalBtnText;
+        btn.style.background = '';
+        btn.style.pointerEvents = 'auto';
+      }, 4000);
+    })
+    .catch(function(error) {
+      console.error('Error!', error.message);
+      btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error. Try Again.';
+      btn.style.background = '#C1121F';
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+    });
   });
-})();
+
 
 function closeProjectModal(){
   document.getElementById('projectModal').classList.remove('open');
