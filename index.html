@@ -346,6 +346,30 @@ section{padding:100px 0}
 .mobile-nav a{display:block;padding:16px 0;font-size:1.1rem;font-weight:500;color:var(--color-dark);border-bottom:1px solid rgba(0,0,0,.06);transition:color var(--transition)}
 .mobile-nav a:hover{color:var(--color-primary)}
 
+/* ══════ WHATSAPP FLOAT ══════ */
+.whatsapp-float {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  bottom: 32px;
+  left: 32px; /* Placed on the left so it doesn't overlap the scroll-to-top button */
+  background-color: #25d366;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+.whatsapp-float:hover {
+  background-color: #128c7e;
+  transform: translateY(-4px) scale(1.05);
+}
+
 /* ══════ RESPONSIVE ══════ */
 @media(max-width:1024px){
   .hero-content-inner{max-width:100%;padding:40px}
@@ -931,6 +955,10 @@ section{padding:100px 0}
     </div>
   </div>
 </section>
+
+<a href="https://wa.me/2348035760573?text=Hello%20IDPC,%20I%20am%20interested%20in%20your%20consultancy%20services." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
 
 <!-- ══════ FOOTER ══════ -->
 <footer class="footer">
