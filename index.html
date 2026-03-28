@@ -186,18 +186,14 @@ section{padding:100px 0}
 .category-header{display:flex;align-items:center;gap:12px;margin-bottom:28px}
 .category-dot{width:12px;height:12px;border-radius:50%}
 .cat-design .category-dot{background:var(--color-primary)}
-/* Make Engineering icons red */
-.cat-engineering .service-card .svc-icon { color: var(--color-primary); }
-
-/* Make Engineering bottom hover lines red */
-
+.cat-engineering .category-dot{background:var(--color-secondary)}
 .cat-advisory .category-dot{background:var(--color-accent)}
 .category-header h3{font-size:1.3rem;font-weight:600}
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
 .service-card{background:var(--color-light);border-radius:var(--radius);padding:32px 28px;transition:all var(--transition);border:1px solid transparent;position:relative;overflow:hidden}
 .service-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;transition:all var(--transition)}
 .cat-design .service-card::after{background:var(--color-primary)}
-.cat-engineering .service-card::after{background:var(--color-primary)}
+.cat-engineering .service-card::after{background:var(--color-secondary)}
 .cat-advisory .service-card::after{background:var(--color-accent)}
 .service-card::after{transform:scaleX(0);transform-origin:left}
 .service-card:hover{background:var(--color-white);box-shadow:var(--shadow-md);border-color:rgba(0,0,0,.08);transform:translateY(-3px)}
