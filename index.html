@@ -402,7 +402,12 @@ section{padding:100px 0}
   .modal-img{height:240px}
   .cta-section{padding:56px 0}
   .cta-buttons{flex-direction:column;align-items:center}
-  #scrollTopBtn{bottom:20px;right:20px;width:42px;height:42px}
+ /* Fix Hero Overlapping Navbar */
+  .hero-content { padding-top: 130px !important; }
+
+  /* Stack Buttons on Mobile */
+  #scrollTopBtn { bottom: 90px; right: 20px; width: 42px; height: 42px; }
+  .whatsapp-float { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 26px; }
 }
 @media(max-width:480px){
   .container{padding:0 16px}
