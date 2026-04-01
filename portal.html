@@ -25,6 +25,11 @@
                 <label class="block text-sm font-medium text-slate-400 mb-1">Amount (₦)</label>
                 <input type="number" id="amount" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-3 text-white focus:border-blue-500 focus:outline-none" placeholder="1500000" required>
             </div>
+
+            <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-1">Request Justification / Details</label>
+                    <textarea id="details" rows="3" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-blue-500 focus:outline-none" placeholder="Provide context for this requisition..." required></textarea>
+            </div>
             
             <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg mt-4 transition duration-200">
                 Route to CEO
@@ -43,10 +48,11 @@
             btn.innerText = 'Routing...';
             btn.disabled = true;
 
-            const data = {
+           const data = {
                 staffName: document.getElementById('staffName').value,
                 project: document.getElementById('project').value,
-                amount: document.getElementById('amount').value
+                amount: document.getElementById('amount').value,
+                details: document.getElementById('details').value // <-- Add this line
             };
 
             // PASTE YOUR APP SCRIPT URL HERE
