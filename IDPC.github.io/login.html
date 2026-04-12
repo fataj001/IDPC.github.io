@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff Login | IDPC — Innovarch Design and Projects Consult Ltd.</title>
+<meta name="description" content="Secure staff login portal for Innovarch Design and Projects Consult Ltd.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --color-primary:#C1121F;
+  --color-secondary:#2B2B2B;
+  --color-accent:#E63946;
+  --color-light:#F8F9FA;
+  --color-dark:#111111;
+  --color-white:#FFFFFF;
+  --font-heading:'Outfit',system-ui,sans-serif;
+  --font-body:'DM Sans',system-ui,-apple-system,sans-serif;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.08);
+  --shadow-md:0 4px 20px rgba(0,0,0,.12);
+  --shadow-lg:0 8px 40px rgba(0,0,0,.16);
+  --radius:12px;
+  --transition:0.35s cubic-bezier(.4,0,.2,1);
+}
+html{font-size:16px}
+body{
+  font-family:var(--font-body);
+  background:var(--color-dark);
+  color:var(--color-white);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1.7;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* Background pattern */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(193,18,31,.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(230,57,70,.06) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(43,43,43,.3) 0%, transparent 50%);
+  z-index:0;
+}
+
+/* Login Card */
+.login-wrapper{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:420px;
+  padding:16px;
+}
+
+.login-card{
+  background:rgba(30,30,30,.85);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  padding:48px 40px;
+  box-shadow:0 24px 80px rgba(0,0,0,.4);
+}
+
+/* Logo */
+.login-logo{
+  text-align:center;
+  margin-bottom:36px;
+}
+.login-logo img{
+  max-width:220px;
+  height:auto;
+  display:inline-block;
+  margin-bottom:16px;
+}
+.login-logo-divider{
+  width:48px;
+  height:2px;
+  background:linear-gradient(90deg,var(--color-primary),var(--color-accent));
+  margin:0 auto 12px;
+  border-radius:2px;
+}
+.login-logo p{
+  font-size:.78rem;
+  color:rgba(255,255,255,.4);
+  text-transform:uppercase;
+  letter-spacing:2.5px;
+  font-weight:600;
+}
+
+/* Form */
+.login-form{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.form-group label{
+  font-size:.82rem;
+  font-weight:600;
+  color:rgba(255,255,255,.6);
+  letter-spacing:.5px;
+}
+.form-group input{
+  width:100%;
+  padding:14px 18px;
+  background:rgba(0,0,0,.4);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  font-family:var(--font-body);
+  font-size:.95rem;
+  color:var(--color-white);
+  outline:none;
+  transition:all var(--transition);
+}
+.form-group input::placeholder{
+  color:rgba(255,255,255,.25);
+}
+.form-group input:focus{
+  border-color:var(--color-primary);
+  box-shadow:0 0 0 3px rgba(193,18,31,.15);
+  background:rgba(0,0,0,.5);
+}
+
+/* Input icon wrapper */
+.input-icon-wrap{
+  position:relative;
+}
+.input-icon-wrap input{
+  padding-left:46px;
+}
+.input-icon-wrap i{
+  position:absolute;
+  left:16px;
+  top:50%;
+  transform:translateY(-50%);
+  color:rgba(255,255,255,.3);
+  font-size:.9rem;
+  transition:color var(--transition);
+}
+.input-icon-wrap input:focus ~ i,
+.input-icon-wrap:focus-within i{
+  color:var(--color-primary);
+}
+
+/* Button */
+.btn-login{
+  width:100%;
+  padding:15px 32px;
+  background:var(--color-primary);
+  color:var(--color-white);
+  border:none;
+  border-radius:10px;
+  font-family:var(--font-body);
+  font-size:.95rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:all var(--transition);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  letter-spacing:.3px;
+  margin-top:8px;
+}
+.btn-login:hover{
+  background:var(--color-secondary);
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(193,18,31,.25);
+}
+.btn-login:active{
+  transform:translateY(0);
+}
+
+/* Error */
+.login-error{
+  display:none;
+  background:rgba(193,18,31,.12);
+  border:1px solid rgba(193,18,31,.3);
+  color:var(--color-accent);
+  padding:12px 16px;
+  border-radius:8px;
+  font-size:.85rem;
+  font-weight:500;
+  text-align:center;
+  animation:shake .4s ease;
+}
+.login-error.visible{
+  display:block;
+}
+
+/* Back link */
+.back-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  margin-top:28px;
+  font-size:.85rem;
+  color:rgba(255,255,255,.35);
+  transition:color var(--transition);
+  text-decoration:none;
+}
+.back-link:hover{
+  color:var(--color-accent);
+}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-8px)}
+  40%{transform:translateX(8px)}
+  60%{transform:translateX(-6px)}
+  80%{transform:translateX(6px)}
+}
+
+/* Fade in animation */
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.login-card{
+  animation:fadeInUp .6s ease forwards;
+}
+
+/* Responsive */
+@media(max-width:480px){
+  .login-card{
+    padding:36px 24px;
+  }
+  .login-logo img{
+    max-width:180px;
+  }
+}
+
+/* Role Toggle */
+.role-toggle{
+  display:flex;
+  gap:0;
+  margin-bottom:28px;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(0,0,0,.3);
+}
+.role-toggle-btn{
+  flex:1;
+  padding:11px 16px;
+  background:transparent;
+  border:none;
+  color:rgba(255,255,255,.4);
+  font-family:var(--font-body);
+  font-size:.85rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all var(--transition);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.role-toggle-btn:hover{
+  color:rgba(255,255,255,.65);
+  background:rgba(255,255,255,.04);
+}
+.role-toggle-btn.active{
+  background:var(--color-primary);
+  color:var(--color-white);
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+</head>
+<body>
+
+<div class="login-wrapper">
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="assets/innovarch_logo.jpg" alt="IDPC — Innovarch Design and Projects Consult Ltd." width="250" height="75">
+      <div class="login-logo-divider"></div>
+      <p id="loginSubtitle">Secure Staff Portal</p>
+    </div>
+
+    <form id="loginForm" class="login-form" novalidate>
+      <div class="form-group">
+        <label for="staffEmail" id="emailLabel">Account Email</label>
+        <div class="input-icon-wrap">
+          <input type="email" id="staffEmail" placeholder="name@innovarch.com" required autocomplete="email">
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="staffPassword">Password</label>
+        <div class="input-icon-wrap">
+          <input type="password" id="staffPassword" placeholder="••••••••" required autocomplete="current-password">
+          <i class="fa-solid fa-lock"></i>
+        </div>
+      </div>
+
+      <div id="loginError" class="login-error">
+        <i class="fa-solid fa-circle-exclamation"></i> Invalid credentials. Access denied.
+      </div>
+
+      <button type="submit" class="btn-login" id="loginBtn">
+        <i class="fa-solid fa-right-to-bracket"></i> Secure Login
+      </button>
+    </form>
+
+    <a href="index.html" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Back to Website
+    </a>
+  </div>
+</div>
+
+<script>
+(async function(){
+  'use strict';
+  
+  // Check if user is already logged in
+  const sessionUser = await SupabaseApp.getUserProfile();
+  if (sessionUser && sessionUser.profile) {
+    if (sessionUser.profile.status === 'Suspended') {
+      document.getElementById('loginError').innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Account suspended. Please contact IT.';
+      document.getElementById('loginError').classList.add('visible');
+      await SupabaseApp.logout();
+    } else {
+      window.location.href = sessionUser.profile.role === 'Admin' ? 'admin.html' : 'portal.html';
+    }
+  }
+
+  // Handle suspended redirect message
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('error') === 'suspended') {
+    document.getElementById('loginError').innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Account suspended. Please contact IT.';
+    document.getElementById('loginError').classList.add('visible');
+  }
+
+  var form = document.getElementById('loginForm');
+  var errorMsg = document.getElementById('loginError');
+  var btn = document.getElementById('loginBtn');
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    errorMsg.classList.remove('visible');
+
+    const email = document.getElementById('staffEmail').value;
+    const password = document.getElementById('staffPassword').value;
+
+    if (!email || !password) return;
+
+    // Loading state
+    const originalBtnHtml = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+    btn.style.pointerEvents = 'none';
+    btn.style.opacity = '0.7';
+
+    try {
+      await SupabaseApp.login(email, password);
+      
+      const sessionUser = await SupabaseApp.getUserProfile();
+      if (!sessionUser || !sessionUser.profile) throw new Error("Could not fetch profile");
+
+      if (sessionUser.profile.status === 'Suspended') {
+        throw new Error("suspended");
+      }
+
+      // Redirect by role
+      if (sessionUser.profile.role === 'Admin') {
+        window.location.href = 'admin.html';
+      } else {
+        window.location.href = 'portal.html';
+      }
+    } catch (err) {
+      console.error(err);
+      if (err.message === "suspended") {
+        errorMsg.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Account suspended. Please contact IT.';
+        await SupabaseApp.logout();
+      } else {
+        errorMsg.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Invalid email or password.';
+      }
+      errorMsg.classList.add('visible');
+      
+      // Reset button
+      btn.innerHTML = originalBtnHtml;
+      btn.style.pointerEvents = 'auto';
+      btn.style.opacity = '1';
+    }
+  });
+})();
+</script>
+</body>
+</html>
